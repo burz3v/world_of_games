@@ -1,9 +1,11 @@
 import random
 
+
 def generate_number(difficulty):
     secret_number = random.randint(1, difficulty)
     print(f"------------------> {secret_number}")
     return secret_number
+
 
 def get_guess_from_user(difficulty):
     while True:
@@ -15,9 +17,11 @@ def get_guess_from_user(difficulty):
             print("Please enter the number ONLY.")
     return number
 
+
 def compare_results(secret_number, number):
     if secret_number == number:
         return True
+
 
 def play(difficulty):
     secret_number = generate_number(difficulty)

@@ -1,7 +1,11 @@
 # world of games project
-import CurrencyRouletteGame, MemoryGame, GuessGame, time, re
+import CurrencyRouletteGame
+import MemoryGame
+import GuessGame
+import time
 from Score import add_score
 from Utils import screen_cleaner
+
 
 def welcome(name):
     welcome_message = f"""
@@ -9,6 +13,7 @@ Hello {name} and welcome to the World of Games (WoG).
 Here you can find many cool games to play.
 """
     return welcome_message
+
 
 def load_game():
     print("""Please choose a game to play:
@@ -34,7 +39,7 @@ def load_game():
     if chosen_game == 2:
         print(f"\nGUESS GAME")
         if_win = GuessGame.play(difficulty)
-        if if_win == True:
+        if if_win:
             print("win from live py")
             add_score(difficulty)
             play_again()
@@ -44,7 +49,7 @@ def load_game():
         print(f"\nMEMORY GAME\nGET READY TO REMEMBER NUMBERS!")
         time.sleep(3)
         if_win = MemoryGame.play(difficulty)
-        if if_win == True:
+        if if_win:
             print("win from live py")
             add_score(difficulty)
         else:
@@ -52,11 +57,12 @@ def load_game():
     elif chosen_game == 3:
         print(f"\nCURRENCY ROULETTE GAME")
         if_win = CurrencyRouletteGame.play(difficulty)
-        if if_win == True:
+        if if_win:
             print("win from live py")
             add_score(difficulty)
         else:
             print("lose from live py")
+
 
 def play_again():
     while True:

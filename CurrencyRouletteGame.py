@@ -1,5 +1,7 @@
-import random, yahoo_fin.stock_info as si
+import random
+import yahoo_fin.stock_info as si
 from datetime import datetime, timedelta
+
 
 def get_money_interval(src, dst, difficulty):
     # construct the currency pair symbol
@@ -17,6 +19,7 @@ def get_money_interval(src, dst, difficulty):
     low_interval = int(converted - (5 - difficulty))
     return converted, amount, high_interval, low_interval
 
+
 def get_guess_from_user(amount):
     while True:
         users_guess = input(f"Guess how much shekels are {amount} dollars: ")
@@ -26,6 +29,7 @@ def get_guess_from_user(amount):
         else:
             print("Please enter the number ONLY.")
     return users_guess
+
 
 def play(difficulty):
     converted, amount, high_interval, low_interval = get_money_interval("USD", "ILS", difficulty)

@@ -4,6 +4,7 @@ from os.path import exists
 
 app = Flask(__name__)
 
+
 @app.route("/")
 def score_server():
     scores_file = SCORES_FILE_NAME
@@ -13,6 +14,7 @@ def score_server():
             return render_template("score.html", SCORE = score), 200
     else:
         return render_template("error.html", ERROR = BAD_RETURN_CODE), 404
+
 
 if __name__ == "__main__":
     app.run(debug=True)

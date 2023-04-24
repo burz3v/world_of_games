@@ -2,6 +2,7 @@ import random
 import time
 import os
 
+
 def generate_sequence(difficulty):
     random_numbers = []
     for i in range(0, difficulty):
@@ -11,6 +12,7 @@ def generate_sequence(difficulty):
     time.sleep(0.7)
     os.system('cls' if os.name == 'nt' else 'clear')
     return random_numbers
+
 
 def get_list_from_user(difficulty):
     user_numbers = []
@@ -26,6 +28,7 @@ def get_list_from_user(difficulty):
         user_numbers.append(number)
     return user_numbers
 
+
 def is_list_equal(random_numbers, user_numbers):
     random_numbers.sort()
     user_numbers.sort()
@@ -33,6 +36,7 @@ def is_list_equal(random_numbers, user_numbers):
         return True
     else:
         return False
+
 
 def play(difficulty):
     random_numbers = generate_sequence(difficulty)
