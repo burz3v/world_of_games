@@ -1,4 +1,3 @@
-# world of games project
 import CurrencyRouletteGame
 import MemoryGame
 import GuessGame
