@@ -11,10 +11,10 @@ def score_server():
     if exists(scores_file):
         with open(scores_file, "r", encoding="utf8") as file:
             score = file.readline()
-            return render_template("score.html", SCORE = score), 200
+            return render_template("score.html", SCORE=score), 200
     else:
-        return render_template("error.html", ERROR = BAD_RETURN_CODE), 404
+        return render_template("error.html", ERROR=BAD_RETURN_CODE), 404
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run("0.0.0.0", 5000, debug=True)
