@@ -4,6 +4,8 @@ services:
   web:
     build: .
     ports:
-      - "5000:5000"
+      - "8777:5000"
+    volumes:
+      - "Scores.txt:/Scores.txt"
   scores:
     image: "burz3v/mainscores"
