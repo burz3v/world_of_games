@@ -1,11 +1,10 @@
 version: '3'
 
 services:
-  web:
+  app:
     build: .
+    image: "burz3v/mainscores"
     ports:
       - "8777:5000"
     volumes:
-      - "Scores.txt:/Scores.txt"
-  scores:
-    image: "burz3v/mainscores"
+      - "${PWD}/Scores.txt:/Scores.txt"
