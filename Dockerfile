@@ -1,8 +1,13 @@
-FROM python:alpine3.17
+FROM python:3.8-slim-buster
+
 WORKDIR /app
-COPY MainScores.py /app
-COPY Utils.py /app
+
+COPY requirements.txt requirements.txt
+
 COPY Scores.txt /Scores.txt
-RUN pip install flask
-EXPOSE 5000
-CMD ["python", "MainScores.py", "--host=0.0.0.0"]
+
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["python", "MainScores.py"]
