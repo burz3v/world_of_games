@@ -4,8 +4,6 @@ WORKDIR /app
 
 COPY requirements.txt requirements.txt
 
-COPY Scores.txt /Scores.txt
-
 RUN pip install -r requirements.txt
 
 COPY . .
