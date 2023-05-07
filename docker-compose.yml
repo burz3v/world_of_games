@@ -6,3 +6,4 @@ services:
     image: "burz3v/mainscores"
     ports:
       - "8777:5000"
+    volumes: "${PWD}/Scores.txt:/app/Scores.txt"
