@@ -6,3 +6,5 @@ services:
     image: "burz3v/mainscores"
     ports:
       - "8777:5000"
+    volumes:
+      - Scores.txt:/Scores.txt
