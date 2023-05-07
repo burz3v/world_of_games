@@ -6,6 +6,8 @@ COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
+VOLUME /app/Scores.txt
+
 COPY . .
 
 CMD ["python", "MainScores.py"]
