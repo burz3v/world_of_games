@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                bat 'py pip install selenium'
                 bat 'py tests/e2e.py'
             }
         }
