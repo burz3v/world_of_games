@@ -39,28 +39,30 @@ def load_game():
         print(f"\nGUESS GAME")
         if_win = GuessGame.play(difficulty)
         if if_win:
-            print("win from live py")
+            print("You won!")
             add_score(difficulty)
             play_again()
         else:
-            print("lose from live py")
+            print("You lose!")
     elif chosen_game == 1:
         print(f"\nMEMORY GAME\nGET READY TO REMEMBER NUMBERS!")
         time.sleep(3)
         if_win = MemoryGame.play(difficulty)
         if if_win:
-            print("win from live py")
+            print("You won!")
             add_score(difficulty)
+            play_again()
         else:
-            print("lose from live py")
+            print("You lose!")
     elif chosen_game == 3:
         print(f"\nCURRENCY ROULETTE GAME")
         if_win = CurrencyRouletteGame.play(difficulty)
         if if_win:
-            print("win from live py")
+            print("You won!")
             add_score(difficulty)
+            play_again()
         else:
-            print("lose from live py")
+            print("You lose!")
 
 
 def play_again():
