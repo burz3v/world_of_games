@@ -1,20 +1,31 @@
+import requests
 import random
-import yahoo_fin.stock_info as si
-from datetime import datetime, timedelta
+from dateutil.parser import parse
 
 
-def get_money_interval(src, dst, difficulty):
-    # construct the currency pair symbol
-    symbol = f"{src}{dst}=X"
-    # extract minute data of the recent 2 days
-    latest_data = si.get_data(symbol, interval="1m", start_date=datetime.now() - timedelta(days=2))
-    # get the latest datetime
-    last_updated_datetime = latest_data.index[-1].to_pydatetime()
-    # get the latest price
-    latest_price = latest_data.iloc[-1].close
+def get_all_exchange_rates_erapi(src):
+    url = f"https://open.er-api.com/v6/latest/{src}"
+    # request the open ExchangeRate API and convert to Python dict using .json()
+    data = requests.get(url).json()
+    if data["result"] == "success":
+        # request successful
+        # get the last updated datetime
+        last_updated_datetime = parse(data["time_last_update_utc"])
+        # get the exchange rates
+        exchange_rates = data["rates"]
+    return last_updated_datetime, exchange_rates
+
+
+def convert_currency_erapi(src, dst, amount):
+    # get all the exchange rates
+    last_updated_datetime, exchange_rates = get_all_exchange_rates_erapi(src)
+    # convert by simply getting the target currency exchange rate and multiply by the amount
+    return exchange_rates[dst] * amount
+
+
+def get_money_interval(difficulty):
     amount = random.randint(1, 100)
-    converted = (int(latest_price) * amount)
-    print(f"-----------------------> {converted}")
+    converted = int(convert_currency_erapi("USD", "ILS", amount))
     high_interval = int(converted + (5 - difficulty))
     low_interval = int(converted - (5 - difficulty))
     return converted, amount, high_interval, low_interval
@@ -32,11 +43,9 @@ def get_guess_from_user(amount):
 
 
 def play(difficulty):
-    converted, amount, high_interval, low_interval = get_money_interval("USD", "ILS", difficulty)
+    converted, amount, high_interval, low_interval = get_money_interval(difficulty)
     users_guess = get_guess_from_user(amount)
     if high_interval >= users_guess >= low_interval:
-        print("win")
         return True
     else:
-        print("lose")
         return False
